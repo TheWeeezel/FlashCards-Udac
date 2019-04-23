@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Button } from "react-native";
+import { setData } from "../utils/api";
 
 import { blue } from "../utils/colors";
 import styles from "../utils/theme";
@@ -32,6 +33,14 @@ class Deck extends Component {
             <Button
               onPress={() => this.props.navigation.navigate("Quiz")}
               title="Start Quiz"
+              accessibilityLabel="Click to Start Quiz!"
+              color={blue}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              onPress={setData}
+              title="Set Data"
               accessibilityLabel="Click to Start Quiz!"
               color={blue}
             />
