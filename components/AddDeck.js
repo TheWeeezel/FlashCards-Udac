@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text, TextInput, Button } from "react-native";
+import { connect } from "react-redux";
 
 import { white, blue } from "../utils/colors";
 import styles from "../utils/theme";
+import { handleAddDeck } from "../actions";
 
 class AddDeck extends Component {
   static navigationOptions = {
@@ -14,7 +16,11 @@ class AddDeck extends Component {
     this.state = { text: "Useless Placeholder" };
   }
 
-  onPress = () => {};
+  handleClick = () => {
+    const { dispatch } = this.props;
+    console.log("title", this.state.text);
+    dispatch(handleAddDeck(this.state.text));
+  };
 
   render() {
     return (
@@ -33,7 +39,7 @@ class AddDeck extends Component {
             value={this.state.text}
           />
           <Button
-            onPress={this.onClick}
+            onPress={this.handleClick}
             title="Add Deck"
             color={blue}
             accessibilityLabel="Click to Add Deck"
@@ -45,4 +51,4 @@ class AddDeck extends Component {
   }
 }
 
-export default AddDeck;
+export default connect()(AddDeck);
