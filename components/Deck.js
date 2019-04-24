@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Button } from "react-native";
-import { setData } from "../utils/api";
+import { connect } from "react-redux";
 
+import { setData } from "../utils/api";
+import { handleRemoveDeck } from "../actions";
 import { blue } from "../utils/colors";
 import styles from "../utils/theme";
 
 class Deck extends Component {
   render() {
+    const { decks } = this.props;
+    const { navigation } = this.props;
+    const title = navigation.getParam("title", "React");
+    const deck = decks[title];
+
+    console.log(deck);
     return (
       <View style={styles.container}>
         <View style={{ padding: 12 }}>
-          <Text style={styles.title}>Deck #</Text>
+          <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}># of Cards</Text>
         </View>
         <View
@@ -45,7 +53,9 @@ class Deck extends Component {
               color={blue}
             />
           </View>
-          <Text style={styles.deleteText}>Delete Deck</Text>
+          <TouchableOpacity onPress={() => handleRemoveDeck(title)}>
+            <Text style={styles.deleteText}>Delete Deck</Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("AddCard")}
@@ -55,4 +65,10 @@ class Deck extends Component {
   }
 }
 
-export default Deck;
+const mapStateToProps = state => {
+  return {
+    decks: state
+  };
+};
+
+export default connect(mapStateToProps)(Deck);

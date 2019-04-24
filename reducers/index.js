@@ -1,4 +1,9 @@
-import { RECEIVE_DECKS, ADD_DECK, ADD_CARD } from "../actions/index";
+import {
+  RECEIVE_DECKS,
+  ADD_DECK,
+  ADD_CARD,
+  REMOVE_DECK
+} from "../actions/index";
 
 export default function flashcards(state = {}, action) {
   switch (action.type) {
@@ -25,7 +30,11 @@ export default function flashcards(state = {}, action) {
           questions: [...new Set({ answer: answer, question: question })]
         }
       };
-
+    case REMOVE_DECK:
+      console.log("actionT:", action.title);
+      return {
+        ...state.filter(() => action.title)
+      };
     default:
       return state;
   }

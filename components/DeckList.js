@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  FlatList
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { connect } from "react-redux";
 
 import { receiveDecks } from "../actions";
@@ -27,7 +21,11 @@ class DeckList extends Component {
           return (
             <TouchableOpacity
               key={item}
-              onPress={() => this.props.navigation.navigate("Deck")}
+              onPress={() =>
+                this.props.navigation.navigate("Deck", {
+                  title: item
+                })
+              }
             >
               <View style={{ padding: 12 }}>
                 <Text style={styles.title}>{item}</Text>
