@@ -51,12 +51,10 @@ export function handleAddDeck(title) {
 }
 
 export function handleRemoveDeck(title) {
-  console.log("Title", title);
   return dispatch => {
     return AsyncStorage.getItem(DECK_STORAGE_KEY)
       .then(results => {
         const data = JSON.parse(results);
-        console.log("data", data);
         data[title] = undefined;
         delete data[title];
         AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
@@ -84,7 +82,6 @@ export function handleAddCard(title, question, answer) {
       DECK_STORAGE_KEY,
       JSON.stringify({
         [title]: {
-          ...questions,
           questions: [
             {
               question: question,

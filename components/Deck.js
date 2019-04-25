@@ -13,8 +13,6 @@ class Deck extends Component {
     const { navigation } = this.props;
     const title = navigation.getParam("title", "React");
     const deck = decks[title];
-
-    console.log(deck);
     return (
       <View style={styles.container}>
         <View style={{ padding: 12 }}>
@@ -31,7 +29,11 @@ class Deck extends Component {
         >
           <View style={styles.button}>
             <Button
-              onPress={() => this.props.navigation.navigate("AddCard")}
+              onPress={() =>
+                this.props.navigation.navigate("AddCard", {
+                  title: title
+                })
+              }
               title="Add Card"
               accessibilityLabel="Click to Add Card"
               color={blue}
@@ -53,7 +55,9 @@ class Deck extends Component {
               color={blue}
             />
           </View>
-          <TouchableOpacity onPress={() => handleRemoveDeck(title)}>
+          <TouchableOpacity
+            onPress={() => this.props.dispatch(handleRemoveDeck(title))}
+          >
             <Text style={styles.deleteText}>Delete Deck</Text>
           </TouchableOpacity>
         </View>

@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  KeyboardAvoidingView
+} from "react-native";
+import { connect } from "react-redux";
 
+import { handleAddCard } from "../actions";
 import styles from "../utils/theme";
 import { blue } from "../utils/colors";
 
@@ -9,19 +17,21 @@ class AddCard extends Component {
     title: "Add Card"
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      question: "Whats the Question?",
-      answer: "Enter the Answer here!"
-    };
-  }
+  state = {
+    question: "Whats the Question?",
+    answer: "Enter the Answer here!"
+  };
 
-  onPress = () => {};
+  handleClick = title => {
+    const { dispatch } = this.props;
+    dispatch(handleAddCard(title, this.state.question, this.state.answer));
+  };
 
   render() {
+    const { navigation } = this.props;
+    const title = navigation.getParam("title", "React");
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.bigTitle}>Add Card</Text>
         <View style={styles.inputContainer}>
           <TextInput
@@ -47,16 +57,16 @@ class AddCard extends Component {
             value={this.state.answer}
           />
           <Button
-            onPress={this.onClick}
+            onPress={() => this.handleClick(title)}
             title="Submit"
             color={blue}
             accessibilityLabel="Click to add a Question"
             style={{ width: "100%" }}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 
-export default AddCard;
+export default connect()(AddCard);

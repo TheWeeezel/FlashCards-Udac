@@ -26,6 +26,7 @@ export default (styles = StyleSheet.create({
     padding: 12,
     flex: 1,
     justifyContent: "flex-end",
-    alignItems: "stretch"
+    alignItems: "stretch",
+    marginBottom: 100
   }
 }));

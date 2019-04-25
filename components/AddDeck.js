@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { View, StyleSheet, Text, TextInput, Button } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TextInput,
+  Button,
+  KeyboardAvoidingView
+} from "react-native";
 import { connect } from "react-redux";
 
 import { white, blue } from "../utils/colors";
@@ -18,13 +25,12 @@ class AddDeck extends Component {
 
   handleClick = () => {
     const { dispatch } = this.props;
-    console.log("title", this.state.text);
     dispatch(handleAddDeck(this.state.text));
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.bigTitle}>Specify the name of your new deck!</Text>
         <View style={styles.inputContainer}>
           <TextInput
@@ -46,7 +52,7 @@ class AddDeck extends Component {
             style={{ width: "100%" }}
           />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
