@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { setData } from "../utils/api";
 import { handleRemoveDeck } from "../actions";
-import { blue } from "../utils/colors";
+import { blue, green } from "../utils/colors";
 import styles from "../utils/theme";
 
 class Deck extends Component {
@@ -41,10 +41,14 @@ class Deck extends Component {
           </View>
           <View style={styles.button}>
             <Button
-              onPress={() => this.props.navigation.navigate("Quiz")}
+              onPress={() =>
+                this.props.navigation.navigate("Quiz", {
+                  title: title
+                })
+              }
               title="Start Quiz"
               accessibilityLabel="Click to Start Quiz!"
-              color={blue}
+              color={green}
             />
           </View>
           <View style={styles.button}>

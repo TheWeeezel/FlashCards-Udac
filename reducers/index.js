@@ -34,11 +34,14 @@ export default function flashcards(state = {}, action) {
         }
       };
     case REMOVE_DECK:
-      console.log("actionT:", action.title);
-      return {
-        ...state,
-        [action.title]: state.action.title.filter(item => item !== action.title)
-      };
+      const newState = Object.keys(state)
+        .filter(title => title !== action.title)
+        .reduce((result, current) => {
+          result[current] = state[current];
+          return result;
+        }, {});
+
+      return { ...newState };
     default:
       return state;
   }
