@@ -13,11 +13,12 @@ class Deck extends Component {
     const { navigation } = this.props;
     const title = navigation.getParam("title", "React");
     const deck = decks[title];
+    const numberOfQuestions = deck.questions ? deck.questions.length : 0;
     return (
       <View style={styles.container}>
         <View style={{ padding: 12 }}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}># of Cards</Text>
+          <Text style={styles.subtitle}>{numberOfQuestions} Cards</Text>
         </View>
         <View
           style={{
@@ -51,14 +52,14 @@ class Deck extends Component {
               color={green}
             />
           </View>
-          <View style={styles.button}>
+          {/* <View style={styles.button}>
             <Button
               onPress={setData}
               title="Set Data"
               accessibilityLabel="Click to Start Quiz!"
               color={blue}
             />
-          </View>
+          </View> */}
           <TouchableOpacity
             onPress={() => this.props.dispatch(handleRemoveDeck(title))}
           >
