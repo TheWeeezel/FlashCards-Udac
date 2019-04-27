@@ -12,7 +12,6 @@ const store = createStore(reducer, middleware);
 export default class App extends React.Component {
   componentDidMount() {
     setLocalNotification();
-    console.log('eooo')
   }
 
   render() {

@@ -4,7 +4,6 @@ FlashCards is a Project which was a given task at the React Nanodegree Programm 
 
 It is a basic Flashcard system for you to add an practice your chosen subjects. By adding a Deck you are able to determine a rubric to which you are then able to add Cards with the chosen exercise.
 
-
 ## Install
 
 To install the project run `yarn` after cloning it into your desired directory
@@ -28,10 +27,17 @@ You will also see any lint errors in the console.
     "react-redux": "6.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
-    
+
+### `Tested on following Operation Systems`
+
+Android 7.0 trough Emulator (Android Studio)
+Android 8.0 trough Emulator (Android Studio)
+Android 9.0 One Plus 5
 
 # Contributors
+
 The Help of the Mentors at Udacity
 
 # License
+
 [The MIT License (MIT)](https://github.com/TheWeeezel/WouldYouRather/blob/master/LICENSE)

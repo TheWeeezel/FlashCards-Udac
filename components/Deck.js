@@ -13,7 +13,7 @@ class Deck extends Component {
     const { navigation } = this.props;
     const title = navigation.getParam("title", "React");
     const deck = decks[title];
-    const numberOfQuestions = deck.questions ? deck.questions.length : 0;
+    const numberOfQuestions = deck && deck.questions ? deck.questions.length : 0;
     return (
       <View style={styles.container}>
         <View style={{ padding: 12 }}>

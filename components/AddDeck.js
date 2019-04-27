@@ -26,6 +26,9 @@ class AddDeck extends Component {
   handleClick = () => {
     const { dispatch } = this.props;
     dispatch(handleAddDeck(this.state.text));
+    this.props.navigation.navigate("Deck", {
+      title: this.state.text
+    });
   };
 
   render() {
